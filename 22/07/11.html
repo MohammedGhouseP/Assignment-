@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Box Model Demo</title>
+  <style>
+    body {
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      padding: 32px;
+    }
+
+    .container {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .box1 {
+      background-color: #D0E8F2;
+      width: 180px;
+      padding: 24px;
+      border: 6px solid #12567d;
+      margin: 8px;
+      box-sizing: content-box;
+    }
+    .box2 {
+      background-color: #FFD6E0;
+      width: 180px;
+      padding: 16px 32px;
+      border: 4px dashed #be2e4b;
+      margin: 32px 16px 8px 40px;
+      box-sizing: border-box;
+    }
+    .box3 {
+      background-color: #C3FBD8;
+      width: 100px;
+      padding: 8px 20px 32px 10px;
+      border: 8px double #1D8036;
+      margin: 4px 56px 16px 8px;
+      /* Defaults to content-box, so no box-sizing needed */
+    }
+
+    .label {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 4px;
+      font-family: monospace;
+    }
+    .content {
+      font-size: 15px;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+  <h2>CSS Box Model Demo</h2>
+  <div class="container">
+    <div class="box1">
+      <div class="label">Box 1: <span style="color:#12567d">box-sizing: content-box</span></div>
+      <div class="content">This box uses <b>content-box</b> (default). The width only includes the content, <br>padding and border add to the final size.</div>
+    </div>
+    <div class="box2">
+      <div class="label">Box 2: <span style="color:#be2e4b">box-sizing: border-box</span></div>
+      <div class="content">This box uses <b>border-box</b>. The width includes content, padding, and border. Notice how different it looks!</div>
+    </div>
+    <div class="box3">
+      <div class="label">Box 3: <span style="color:#1D8036">box-sizing: content-box (default)</span></div>
+      <div class="content">A box with <b>custom padding, border, margin</b>, and a smaller width, demonstrating the additive effect.</div>
+    </div>
+  </div>
+</body>
+</html>
