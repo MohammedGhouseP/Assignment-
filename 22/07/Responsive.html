@@ -3,32 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsiveness</title>
+    <title>Responsive Grid</title>
     <style>
       * {
-        box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
 
-      .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+      body {
         padding: 20px;
-        gap: 10px;
-        min-height: 100vh;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
       }
 
       .box {
-        flex: 1 1 22%;
-        min-width: 200px;
-        max-width: 22%;
         height: 100px;
-        text-align: center;
-        line-height: 100px;
-        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-weight: bold;
+        color: white;
       }
 
       #box1 {
@@ -48,17 +46,17 @@
         color: black;
       }
 
-      @media screen and (max-width: 1024px) {
-        .box {
-          flex: 1 1 45%;
-          max-width: 45%;
+      /* Tablet: 2 columns */
+      @media screen and (max-width: 1023px) {
+        .container {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
-       @media screen and (max-width: 600px) {
-        .box {
-          flex: 1 1 100%;
-          max-width: 100%;
+      /* Mobile: 1 column */
+      @media screen and (max-width: 600px) {
+        .container {
+          grid-template-columns: 1fr;
         }
       }
     </style>
