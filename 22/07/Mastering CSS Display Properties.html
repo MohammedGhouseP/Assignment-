@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #block{
+            display: block;
+            height: 100px;
+            width: 100vw;
+            background-color: rgb(221, 133, 133);
+        }
+        #inline{
+            display: inline;
+            height: 100px;
+            width: 100vw;
+            background-color: rgb(147, 216, 147);
+        }
+        #inline-block{
+            display: inline-block;
+            height: 100px;
+            width: 300px;
+            background-color: rgb(91, 91, 227);
+        }
+        #none{
+            height: 100px;
+            width: 100vw;
+            background-color: yellow;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="block">block</div>
+    <div id="inline">inline</div>
+    <div id="inline-block">inline-block</div>
+    the below is a div with display none, it will not be rendered
+    <div id="none">none</div>
+</body>
+</html>
