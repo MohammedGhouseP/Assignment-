@@ -1,14 +1,14 @@
-let age = 25; //global variable
+let age = 20;
 
 function displayAge() {
-  console.log('Age:', age);
+  console.log("displayAge -> age:", age);
 }
 
-function changeAge(newAge) {
-  age = newAge;
-  console.log('Age changed :', age);
+function changeAge() {
+  age = 35;
+  console.log("changeAge -> age:", age);
 }
 
-displayAge();     
-changeAge(30);    
-displayAge();     
+displayAge();    
+changeAge();    
+displayAge();    
