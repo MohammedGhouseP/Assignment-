@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="react"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    let root = document.getElementById("root");
+    let h1 = document.createElement("h1");
+    let text = document.createTextNode("Hello World!");
+    h1.appendChild(text);
+    root.appendChild(h1);
+  </script>
+//decalrative approach
+  <script type="text/babel">
+    function App() {
+      return <p>Hello, World!</p>;
+    }
+
+    ReactDOM.render(<App />, document.getElementById("react"));
+  </script>
+</html>
