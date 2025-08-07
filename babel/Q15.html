@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPA Example</title>
+    <style>
+      nav button {
+        margin: 8px;
+        padding: 8px 16px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .active {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function App() {
+      // State: Track active page
+      const [page, setPage] = React.useState("home");
+
+      // Conditional rendering of page content
+      let content;
+      if (page === "home") content = <Home />;
+      if (page === "about") content = <About />;
+      if (page === "contact") content = <Contact />;
+
+      return (
+        <div>
+          <nav>
+            <button
+              className={page === "home" ? "active" : ""}
+              onClick={() => setPage("home")}
+            >
+              Home
+            </button>
+            <button
+              className={page === "about" ? "active" : ""}
+              onClick={() => setPage("about")}
+            >
+              About
+            </button>
+            <button
+              className={page === "contact" ? "active" : ""}
+              onClick={() => setPage("contact")}
+            >
+              Contact
+            </button>
+          </nav>
+          <div
+            style={{
+              marginTop: "2em",
+              padding: "1em",
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              background: "#f8f9fa",
+            }}
+          >
+            {content}
+          </div>
+        </div>
+      );
+    }
+
+    function Home() {
+      return (
+        <div>
+          <h1>Welcome to Home Page</h1>
+        </div>
+      );
+    }
+
+    function About() {
+      return (
+        <div>
+          <h1>Welcome to About Page</h1>
+        </div>
+      );
+    }
+
+    function Contact() {
+      return (
+        <div>
+          <h1>Welcome to Contact Page</h1>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</html>
