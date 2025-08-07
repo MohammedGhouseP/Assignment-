@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React vs Vanilla DOM</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 2em;}
+    button { margin-right: 1em; margin-top: 1em;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <script type="text/babel">
+    let vanillaDOMUpdates = 0;
+
+    function App() {
+      const [reactDOMUpdates, setReactDOMUpdates] = React.useState(0);
+      const [reactTitle, setReactTitle] = React.useState('Initial Title (React)');
+      const [force, setForce] = React.useState(0);
+
+      function handleVanillaTitleChange() {
+        document.title = `Vanilla Title #${vanillaDOMUpdates + 1}`;
+        vanillaDOMUpdates += 1;
+        setForce(force => force + 1);
+      }
+
+
+      function handleReactTitleChange() {
+        setReactDOMUpdates(reactDOMUpdates + 1);
+        setReactTitle(`React Title #${reactDOMUpdates + 1}`);
+      }
+
+      React.useEffect(() => {
+        document.title = reactTitle;
+      }, [reactTitle]);
+
+      return (
+        <div>
+          <h2>React vs Vanilla DOM Updates</h2>
+          <div>
+            <button onClick={handleVanillaTitleChange}>
+              Change Title (Vanilla JS)
+            </button>
+            <span>
+              Vanilla DOM updates: <b>{vanillaDOMUpdates}</b>
+            </span>
+          </div>
+          <div>
+            <button onClick={handleReactTitleChange}>
+              Change Title (React)
+            </button>
+            <span>
+              React (Virtual DOM) updates: <b>{reactDOMUpdates}</b>
+            </span>
+          </div>
+          <p>
+            <i>Open your browser's tab title to observe the changes.  
+            Vanilla JS directly updates the DOM.  
+            React uses state and then updates the DOM more efficiently.</i>
+          </p>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
