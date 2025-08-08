@@ -1,0 +1,38 @@
+/* index.css – quick visual aid, optional */
+body {
+  font-family: system-ui, sans-serif;
+  background: #f6f7f9;
+  margin: 0;
+  padding: 40px;
+}
+.app {
+  max-width: 640px;
+  margin: auto;
+  text-align: center;
+}
+input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+.box {
+  padding: 16px;
+  margin: 12px auto;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.level1 {
+  background: #fffbeb;
+}
+.level2 {
+  background: #ecfdf5;
+}
+.level3 {
+  background: #eef2ff;
+}
+.deepest {
+  background: #fee2e2;
+}
