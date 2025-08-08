@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState, useEffect, useRef} from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [seconds, setSeconds] = useState(0);      // elapsed time
+  const [running, setRunning] = useState(false);  // stopwatch flag
+  const [target,  setTarget]  = useState(10);     // alarm threshold
+  const alarmRef = useRef(new Audio("https://assets.mixkit.co/sfx/preview/mixkit-bell-ring-586.mp3"));
+
+  const handleStart = () => setRunning(true);
+  const handleStop  = () => setRunning(false);
+  const handleReset = () => { setSeconds(0); setRunning(false); };
+
+  useEffect(() => {
+    if (!running) return;               
+
+    const id = setInterval(() => setSeconds(s => s + 1), 1_000);
+
+    return () => clearInterval(id);     
+  }, [running]);
+
+  useEffect(() => {
+    if (seconds === target && seconds !== 0) {
+      alarmRef.current.currentTime = 0; 
+      alarmRef.current.play().catch(console.error);
+    }
+  }, [seconds, target]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="wrapper">
+      <h1>{seconds}s</h1>
 
-export default App
+      <div className="btn-row">
+        <button onClick={handleStart} disabled={running}>Start</button>
+        <button onClick={handleStop}  disabled={!running}>Stop</button>
+        <button onClick={handleReset}>Reset</button>
+      </div>
+
+      <label className="target">
+        Target&nbsp;
+        <input
+          type="number"
+          min="1"
+          value={target}
+          onChange={e => setTarget(Number(e.target.value))}
+        />&nbsp;s
+      </label>
+    </div>
+  );
+}
